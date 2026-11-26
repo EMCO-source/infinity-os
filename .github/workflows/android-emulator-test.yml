@@ -1,0 +1,64 @@
+name: android-emulator-test
+
+# Smoke test for the AndroidServer kit on a GitHub-hosted Ubuntu runner (KVM enabled).
+# CI/testing only: GitHub Actions must not be used to host or run a persistent server.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  emulator-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666"' | sudo tee /etc/udev/rules.d/99-kvm.rules
+          sudo udevadm trigger --name-match=kvm || true
+          sudo chmod 666 /dev/kvm || true
+          ls -l /dev/kvm
+
+      - name: Install host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jre-headless unzip xvfb xauth x11-utils x11vnc novnc websockify python3 \
+            libgl1 libegl1 libxkbcommon0 libxkbcommon-x11-0 libxcb-cursor0 libxcb-xinerama0 \
+            libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libnss3 libpulse0
+
+      - name: Install Android SDK packages
+        run: |
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+          yes | sdkmanager --licenses > /dev/null
+          sdkmanager "platform-tools" "emulator" "system-images;android-35;google_apis_playstore;x86_64"
+          emulator -version
+          emulator -accel-check
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Prepare slot 1 (AVD)
+        run: |
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+          python3 slot.py info 1
+          python3 slot.py prepare 1
+
+      - name: Boot emulator and verify boot_completed
+        run: |
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+          python3 slot.py run 1 &
+          RUNNER_PID=$!
+          BOOT=""
+          for i in $(seq 1 60); do
+            BOOT=$($ANDROID_HOME/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            if [ "$BOOT" = "1" ]; then echo "Android booted on emulator-5554"; break; fi
+            sleep 10
+          done
+          $ANDROID_HOME/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed | grep -q 1
+          kill -TERM $RUNNER_PID 2>/dev/null || true
+          wait $RUNNER_PID 2>/dev/null || true

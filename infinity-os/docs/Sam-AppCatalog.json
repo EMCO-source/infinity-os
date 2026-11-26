@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Facebook",
+    "category": "social",
+    "package": "com.facebook.katana",
+    "glyph": "f",
+    "kind": "android"
+  },
+  {
+    "name": "Telegram",
+    "category": "social",
+    "package": "org.telegram.messenger",
+    "glyph": "TG",
+    "kind": "android"
+  },
+  {
+    "name": "WhatsApp",
+    "category": "social",
+    "package": "com.whatsapp",
+    "glyph": "WA",
+    "kind": "android"
+  },
+  {
+    "name": "Instagram",
+    "category": "social",
+    "package": "com.instagram.android",
+    "glyph": "IG",
+    "kind": "android"
+  },
+  {
+    "name": "Messenger",
+    "category": "social",
+    "package": "com.facebook.orca",
+    "glyph": "M",
+    "kind": "android"
+  },
+  {
+    "name": "Signal",
+    "category": "social",
+    "package": "org.thoughtcrime.securesms",
+    "glyph": "S",
+    "kind": "android"
+  },
+  {
+    "name": "TikTok",
+    "category": "social",
+    "package": "com.zhiliaoapp.musically",
+    "glyph": "♪",
+    "kind": "android"
+  },
+  {
+    "name": "Snapchat",
+    "category": "social",
+    "package": "com.snapchat.android",
+    "glyph": "Sc",
+    "kind": "android"
+  },
+  {
+    "name": "X",
+    "category": "social",
+    "package": "com.twitter.android",
+    "glyph": "X",
+    "kind": "android"
+  },
+  {
+    "name": "Threads",
+    "category": "social",
+    "package": "com.instagram.barcelona",
+    "glyph": "@",
+    "kind": "android"
+  },
+  {
+    "name": "Discord",
+    "category": "social",
+    "package": "com.discord",
+    "glyph": "D",
+    "kind": "android"
+  },
+  {
+    "name": "Reddit",
+    "category": "social",
+    "package": "com.reddit.frontpage",
+    "glyph": "r/",
+    "kind": "android"
+  },
+  {
+    "name": "LinkedIn",
+    "category": "social",
+    "package": "com.linkedin.android",
+    "glyph": "in",
+    "kind": "android"
+  },
+  {
+    "name": "Pinterest",
+    "category": "social",
+    "package": "com.pinterest",
+    "glyph": "P",
+    "kind": "android"
+  },
+  {
+    "name": "YouTube",
+    "category": "social",
+    "package": "com.google.android.youtube",
+    "glyph": "▶",
+    "kind": "android"
+  },
+  {
+    "name": "Cash App",
+    "category": "payment",
+    "package": "com.squareup.cash",
+    "glyph": "$",
+    "kind": "android"
+  },
+  {
+    "name": "Chime",
+    "category": "payment",
+    "package": "com.onedebit.chime",
+    "glyph": "ch",
+    "kind": "android"
+  },
+  {
+    "name": "Varo",
+    "category": "payment",
+    "package": "com.varomoney.bank",
+    "glyph": "V",
+    "kind": "android"
+  },
+  {
+    "name": "Venmo",
+    "category": "payment",
+    "package": "com.venmo",
+    "glyph": "v",
+    "kind": "android"
+  },
+  {
+    "name": "Apple Pay / Apple Cash",
+    "category": "payment",
+    "package": "",
+    "glyph": "",
+    "kind": "appleWallet"
+  },
+  {
+    "name": "Google Pay / Google Wallet",
+    "category": "payment",
+    "package": "com.google.android.apps.walletnfcrel",
+    "glyph": "G",
+    "kind": "android"
+  },
+  {
+    "name": "PayPal",
+    "category": "payment",
+    "package": "com.paypal.android.p2pmobile",
+    "glyph": "PP",
+    "kind": "android"
+  },
+  {
+    "name": "OnePay",
+    "category": "payment",
+    "package": "com.onefinance.one",
+    "glyph": "1",
+    "kind": "android"
+  },
+  {
+    "name": "Bitcoin",
+    "category": "payment",
+    "package": "",
+    "glyph": "₿",
+    "kind": "bitcoin"
+  }
+]

@@ -1,0 +1,23 @@
+services:
+  desktop:
+    image: lscr.io/linuxserver/webtop:debian-xfce
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: ${TZ:-Africa/Cairo}
+      CUSTOM_USER: ${INFINITY_USER:?Set INFINITY_USER}
+      FILE__PASSWORD: /run/secrets/desktop_password
+    secrets:
+      - desktop_password
+    volumes:
+      - desktop-home:/config
+    ports:
+      - "127.0.0.1:3001:3001"
+    shm_size: 1gb
+    restart: unless-stopped
+    # Deliberately no privileged, host network, Docker socket or KVM device.
+secrets:
+  desktop_password:
+    file: ${INFINITY_PASSWORD_FILE:?Set an absolute password file path}
+volumes:
+  desktop-home:

@@ -1,0 +1,13 @@
+# Example only. Never use placeholders as keys. Generate keys locally.
+# Install as /etc/wireguard/wg0.conf, owner root, mode 600.
+[Interface]
+Address = 10.83.0.1/24
+ListenPort = 51820
+PrivateKey = REPLACE_WITH_SERVER_PRIVATE_KEY
+
+[Peer]
+PublicKey = REPLACE_WITH_PHONE_PUBLIC_KEY
+AllowedIPs = 10.83.0.2/32
+# Phone peer: Address 10.83.0.2/32, AllowedIPs 10.83.0.0/24,
+# Endpoint your-owned-host:51820, PersistentKeepalive 25 if behind NAT.
+# No internet-routing/NAT rules are added. This is private host access only.
