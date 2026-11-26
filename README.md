@@ -1,11 +1,28 @@
-# سام — أجهزة أندرويد الخاصة
+# INFINITY OS
 
-هذه الحزمة تشغّل محاكيات أندرويد على خادمك. تطبيق الآيفون يعرض شاشة المحاكي ويتحكم به، وبيانات أندرويد تظل على الخادم. يمكن تجهيز عشر بيئات مستقلة. تحتاج إلى جهاز Linux ‏x86_64 يدعم KVM وتشغيل المحاكي الرسمي. هذه الحزمة لا تتضمن صورة نظام Google أو استضافة مفعّلة.
+Self-hosted Linux web desktop and KVM/QEMU VPS management from the browser. Mobile-first.
 
-1. اتبع [تجهيز جهاز الاستضافة وتنزيل صورة أندرويد](HOST.md). ابدأ ببيئة واحدة للتأكد من التوافق والمساحة المتاحة.
-2. اتبع [تشغيل بوابة HTTPS وربط الآيفون](GATEWAY.md). احتفظ باسم المستخدم وكلمة السر عندك.
-3. في تطبيق Sam-CloudeSpace 1.4 افتح إعداد السيرفر واحفظ عنوانه الأساسي مرة واحدة. اجعل هاتفك متصلاً بالشبكة الخاصة التي تصل للسيرفر.
-4. اضغط **Cash App 2** لفتح بيئة أندرويد الأولى. عند عدم وجود التطبيق، استخدم Google Play داخل هذه البيئة لتثبيته إذا كان متاحًا. **Cash App 1** يستخدم نسخة الآيفون المحلية.
-5. لإضافة تطبيق آخر افتح **إضافة تطبيق** في سام. يمكنك تحديد اسم الحزمة ليفتح التطبيق مباشرة أو تركه فارغًا لفتح شاشة أندرويد واختيار التطبيق هناك. تشغيل كل بيئة يتطلب ذاكرة ومعالجًا ومساحة تخزين. احتفظ بالبيانات داخل نفس البيئة عند تحديث البرامج.
+Open source (MIT), self-hostable, no forced paid services.
 
-إزالة البطاقة من الآيفون تزيل الاختصار. قد تظل الحسابات مسجلًا دخولها عند إعادة استخدام نفس رقم البيئة. سجّل الخروج من التطبيق داخل أندرويد قبل تسليم البيئة لمستخدم آخر. توافق كل تطبيق مع المحاكي تحدده الخدمة، وقد تحجب بعض التطبيقات المالية شاشة العرض أو تمنع تسجيل الدخول.
+## Features (built and tested)
+
+- Browser control panel with secure owner/client login
+- Real KVM/QEMU virtual machines: create, start, stop, restart, persistent disks
+- Android Cloud: run a real KVM-accelerated Android emulator and control it live from the browser with touch input
+- Mobile-first web UI, tested on iOS Safari and Android Chrome
+- Adaptive screen streaming tuned for slow mobile connections
+
+## Stack
+
+- QEMU/KVM and libvirt for virtualization
+- Python panel server plus HTML/JS web UI
+- Docker Compose for deployable components
+
+## Requirements
+
+- Linux host with `/dev/kvm` (hardware virtualization enabled)
+- See [docs/INSTALL.md](docs/INSTALL.md)
+
+## License
+
+MIT - see [LICENSE](LICENSE)
